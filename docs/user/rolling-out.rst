@@ -53,7 +53,7 @@ Here's the Application object we'll use:
       values:
         replicaCount: 3
 
-Copy this to a file called ``app.yaml`` and apply it to our Kubernetes cluster:
+Copy this to a file called ``app.yaml`` and apply it to our Kubernetes management cluster:
 
 .. code-block:: shell
 
