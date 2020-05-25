@@ -4,7 +4,12 @@
  Using ``shipperctl``
 ======================
 
-The ``shipperctl`` command is created to make using Shipper easier. The commands under ``shipperctl admin`` are meant to aid cluster administrators or users who want to administrate Shipper locally. Commands that are not a subset of ``shipperctl admin`` are meant to make life easier for users using a cluster with Shipper already running in it.
+The ``shipperctl`` command is created to make using Shipper
+easier. The commands under ``shipperctl admin`` are meant to aid
+cluster administrators or users who want to administrate Shipper
+locally. Commands that are not a subset of ``shipperctl admin`` are
+meant to make life easier for users using a cluster with Shipper
+already running in it.
 
 Setting Up Clusters Using ``shipperctl admin clusters apply``
 -------------------------------------------------------------
