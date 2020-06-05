@@ -86,7 +86,7 @@ a rollout strategy complete.
 
 .. code-block:: shell
 
-	$ kubectl --context shipper-mgmt get rel super-server-83e4eedd-0 -o json | jq .status.achievedStep
+	$ kubectl --context kind-mgmt get rel super-server-83e4eedd-0 -o json | jq .status.achievedStep
 	null
 	$ # "null" means Shipper has not written the achievedStep key, because it hasn't finished the first step
 	$ kubectl get rel -o json | jq .items[0].status.achievedStep
