@@ -206,7 +206,7 @@ And confirm that Shipper believes this rollout to be done:
 
 .. code-block:: shell
 
-	$ kubectl --context kind-mgmt get rel -o json | jq .items[0].status.achievedStep
+               	$ kubectl --context kind-mgmt get rel -o json | jq .items[0].status.achievedStep
 	{
 	  "name": "full on",
 	  "step": 1
