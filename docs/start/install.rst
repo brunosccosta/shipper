@@ -144,6 +144,7 @@ Shipper:
     Registering or updating custom resource definitions... done
     Finished setting up application clusters
 
+.. _deploy-shipper:
 **********************
 Step 4: deploy shipper
 **********************

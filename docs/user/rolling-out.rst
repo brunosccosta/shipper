@@ -131,7 +131,7 @@ This set of conditions shows that the strategy hasn't been executed
 because Shipper can not contact the *application* cluster called
 ``kind-app``.
 
-``.status.strategy.conditions``
+``.status.strategy.clusters``
 -------------------------------
 
 For a more detailed view of what's happening while things are in between

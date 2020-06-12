@@ -27,7 +27,7 @@ pipeline. Since these commands are idempotent, you can use them to
 apply the configuration of your clusters.
 
 Note that these commands don't create the *Shipper management* or
-*Shipper application* deployments. You should do that yourself once
+*Shipper application* deployments. You should :ref:`deploy Shipper<deploying-shipper>` once
 you've run these commands.
 
 The commands under ``shipperctl clusters`` should be run in this order
@@ -35,13 +35,18 @@ if you're setting up a cluster for a very first time. Once you've
 followed this procedure, you can use the ones that apply to your
 situation.
 
+.. important::
+
+   Note that you need to change your context to point to the
+   management cluster before running the following commands.
+
 #. `shipperctl clusters setup management`_: creates the
-   *CustomResourceDefinition*s, *ServiceAccount*, *ClusterRoleBinding*
-   and other objects Shipper needs to function correctly.
+   *CustomResourceDefinitions*, *ServiceAccount*, *ClusterRoleBinding*
+   and other objects Shipper needs to function correctly. 
 #. `shipperctl clusters join`_: creates the *ServiceAccount* that
    Shipper is going to use on the **application** cluster, and copies
    its token back to the **management** cluster. This is so that
-   *Shipper management*, running in the **management** cluster, can
+   *shipper-mgmt*, running in the **management** cluster, can
    modify *InstallationTarget*, *CapacityTarget*, and *TrafficTarget*
    objects on the **application** cluster. Once the token is created,
    this command also creates a *Cluster* object on the *management*
@@ -50,7 +55,7 @@ situation.
 #. `shipperctl clusters setup application`_: once all the objects are
    in place and Shipper knows how to communicate with the
    **application** cluster, this command is used to create or update the
-   *CustomResourceDefinition*s that introduce the ``*Target``
+   *CustomResourceDefinitions* that introduce the ``*Target``
    resources to the **application** clusters.
 
 All of these commands share a certain set of options. However, they
@@ -68,7 +73,7 @@ Below are the options that are shared between all the commands:
 
 .. option:: --management-cluster-context <string>
 
-  By default, ``shipperctl`` uses the context that was already set in your kubernetes configuration. However, if that's not what you want, you can use this option to tell ``shipperctl`` to use another context.
+  By default, ``shipperctl`` uses the context that was already set in your ``kubeconfig`` (i.e. using ``kubectl config use-context``). However, if that's not what you want, you can use this option to tell ``shipperctl`` to use another context.
 
 ``shipperctl clusters setup management``
 ++++++++++++++++++++++++++++++++++++++++
@@ -77,7 +82,7 @@ As mentioned above, this command is used to set up the **management** cluster fo
 
 .. option:: --management-cluster-service-account <string>
 
-  the name of the service account Shipper will use for the management cluster (default "shipper-management-cluster")
+  the name of the service account Shipper will use for the management cluster (default "shipper-mgmt-cluster")
 
 .. option:: -g, --rollout-blocks-global-namespace <string>
 
@@ -85,20 +90,20 @@ As mentioned above, this command is used to set up the **management** cluster fo
 
   This is the namespace that the users or administrators of the
   **management** cluster will create a *RolloutBlock* object, so that
-  all Shipper rollouts for *Application*s on that cluster would be
+  all Shipper rollouts for *Applications* on that cluster would be
   disabled.
 
 ``shipperctl clusters join``
 ++++++++++++++++++++++++++++
 
 As mentioned above, this command is used to join the **management** and
-*application* clusters together using a ``clusters.yaml`` file. To
+**application** clusters together using a ``clusters.yaml`` file. To
 know more about the format of that file, look at the `Clusters
 Configuration File Format`_ section.
 
 .. option:: --application-cluster-service-account <string>
 
-  the name of the service account Shipper will use in the application cluster (default "shipper-application-cluster")
+  the name of the service account Shipper will use in the application cluster (default "shipper-app-cluster")
 
 .. option:: -f, --file <string>
 
@@ -180,4 +185,4 @@ If you're running on GKE, your cluster context names are likely to have undersco
 Once you have set up the **management** cluster and joined it to one or more **application** clusters, you can use this command to set up the **application** clusters for use by ``shipperctl``. Below is an explanation of the options:
 
 .. option:: --application-cluster-service-account <string>
-  the name of the service account Shipper will use for the application cluster (default "shipper-application-cluster")
+  the name of the service account Shipper will use for the application cluster (default "shipper-app-cluster")
