@@ -55,7 +55,7 @@ situation.
 #. `shipperctl clusters setup application`_: once all the objects are
    in place and Shipper knows how to communicate with the
    **application** cluster, this command is used to create or update the
-   *CustomResourceDefinitions* that introduce the ``*Target``
+   *CustomResourceDefinitions* that introduce the ``Target``
    resources to the **application** clusters.
 
 All of these commands share a certain set of options. However, they
@@ -185,4 +185,5 @@ If you're running on GKE, your cluster context names are likely to have undersco
 Once you have set up the **management** cluster and joined it to one or more **application** clusters, you can use this command to set up the **application** clusters for use by ``shipperctl``. Below is an explanation of the options:
 
 .. option:: --application-cluster-service-account <string>
+
   the name of the service account Shipper will use for the application cluster (default "shipper-app-cluster")

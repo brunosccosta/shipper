@@ -103,10 +103,10 @@ is set to the management cluster:
 
 .. code-block:: shell
 
-$ kubectl config get-contexts
-CURRENT   NAME                                               CLUSTER                  AUTHINFO            NAMESPACE
-          kind-app                                           kind-app                 kind-app
-*         kind-mgmt                                          kind-mgmt                kind-mgmt
+    $ kubectl config get-contexts
+    CURRENT   NAME          CLUSTER                  AUTHINFO            NAMESPACE
+              kind-app      kind-app                 kind-app
+    *         kind-mgmt     kind-mgmt                kind-mgmt
 
 Now we'll give ``clusters.yaml`` to ``shipperctl`` to configure the cluster for
 Shipper:

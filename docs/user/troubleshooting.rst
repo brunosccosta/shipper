@@ -74,21 +74,25 @@ Release's status:
     $ kubectl describe rel nginx-vj7sn-7cb440f1-0
     ...
     Status:
-      Achieved Step:  0
+      Achieved Step:
+        Name:  staging
+        Step:  0
       Conditions:
         Last Transition Time:  2018-07-27T07:21:14Z
         Status:                True
         Type:                  Scheduled
       Strategy:
-        Conditions:
-          Last Transition Time:  2018-07-27T07:23:29Z
-          Message:               clusters pending capacity adjustments: [minikube]
-          Reason:                ClustersNotReady
-          Status:                False
-          Type:                  ContenderAchievedCapacity
-          Last Transition Time:  2018-07-27T07:23:29Z
-          Status:                True
-          Type:                  ContenderAchievedInstallation
+        Clusters:
+          Conditions:
+            Last Transition Time:  2018-07-27T07:23:29Z
+            Message:               clusters pending capacity adjustments: [minikube]
+            Reason:                ClustersNotReady
+            Status:                False
+            Type:                  ContenderAchievedCapacity
+            Last Transition Time:  2018-07-27T07:23:29Z
+            Status:                True
+            Type:                  ContenderAchievedInstallation
+          Name: minikube
         State:
           Waiting For Capacity:      True
           Waiting For Command:       False
@@ -138,7 +142,6 @@ The next step would be to look at the corresponding target object. Since we're w
     $ kubectl describe --context kind-app ct nginx-vj7sn-7cb440f1-0
     ...
     Status:
-      Clusters:
         Achieved Percent:    0
         Available Replicas:  0
         Conditions:
@@ -150,26 +153,6 @@ The next step would be to look at the corresponding target object. Since we're w
           Reason:                PodsNotReady
           Status:                False
           Type:                  Ready
-        Name:                    minikube
-        Sad Pods:
-          Condition:
-            Last Probe Time:       <nil>
-            Last Transition Time:  2018-07-27T07:23:14Z
-            Status:                True
-            Type:                  PodScheduled
-          Containers:
-            Image:     nginx:boom
-            Image ID:
-            Last State:
-            Name:           nginx
-            Ready:          false
-            Restart Count:  0
-            State:
-              Waiting:
-                Message:    Back-off pulling image "nginx:boom"
-                Reason:     ImagePullBackOff
-          Init Containers:  <nil>
-          Name:             nginx-vj7sn-7cb440f1-0-nginx-9b5c4d7c9-2gjwl
     ...
 
 .. important::
