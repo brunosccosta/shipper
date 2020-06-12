@@ -98,6 +98,16 @@ Paste your server URL as a string.
 Step 3: apply the manifest
 **************************
 
+Before you run ``shipperctl``, make sure that your ``kubectl`` context
+is set to the management cluster:
+
+.. code-block:: shell
+
+$ kubectl config get-contexts
+CURRENT   NAME                                               CLUSTER                  AUTHINFO            NAMESPACE
+          kind-app                                           kind-app                 kind-app
+*         kind-mgmt                                          kind-mgmt                kind-mgmt
+
 Now we'll give ``clusters.yaml`` to ``shipperctl`` to configure the cluster for
 Shipper:
 
@@ -134,6 +144,7 @@ Shipper:
     Registering or updating custom resource definitions... done
     Finished setting up application clusters
 
+.. _deploy-shipper:
 **********************
 Step 4: deploy shipper
 **********************
@@ -151,24 +162,13 @@ service accounts, and so on, let's create the Shipper *Deployment*:
 This will create an instance of Shipper in the ``shipper-system`` namespace in both clusters.
 
 .. note::
-    | To deploy shipper on one cluster (management and application cluster in one), setup management and application cluster to the same one.
-    | Here is an example of a ``clusters.yaml`` for one cluster:
-
-    .. code-block:: yaml
-
-        managementClusters:
-        - name: docker-desktop
-        applicationClusters:
-        - name: docker-desktop
-          region: local
-
-    Then you'll deploy both deployment objects (shipper-app and shipper-mgmt) in that cluster.
+    | To deploy shipper on one cluster (management and application cluster in one), create the **management** and **application** deployments  on the same cluster.
 
 *********************
 Step 5: do a rollout!
 *********************
 
-Now we should have a working Shipper installation. :ref:`Let's roll something out! <user_rolling-out>`
+Now you should have a working Shipper installation. :ref:`Let's roll something out! <user_rolling-out>`
 
 .. rubric:: Footnotes
 
