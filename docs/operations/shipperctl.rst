@@ -27,7 +27,7 @@ pipeline. Since these commands are idempotent, you can use them to
 apply the configuration of your clusters.
 
 Note that these commands don't create the *Shipper management* or
-*Shipper application* deployments. You should :ref:`deploy Shipper<deploying-shipper>` once
+*Shipper application* deployments. You should :ref:`deploy Shipper <start>` once
 you've run these commands.
 
 The commands under ``shipperctl clusters`` should be run in this order
@@ -69,11 +69,14 @@ Below are the options that are shared between all the commands:
 
 .. option:: -n, --shipper-system-namespace <string>
 
-  The namespace Shipper is running in. This is the namespace where you have a *Deployment* running the Shipper management or application image.
+  The namespace Shipper is running in. This is the namespace where you have a *Deployment* running
+the Shipper management or application image.
 
 .. option:: --management-cluster-context <string>
 
-  By default, ``shipperctl`` uses the context that was already set in your ``kubeconfig`` (i.e. using ``kubectl config use-context``). However, if that's not what you want, you can use this option to tell ``shipperctl`` to use another context.
+  By default, ``shipperctl`` uses the context that was already set in your ``kubeconfig``
+(i.e. using ``kubectl config use-context``). However, if that's not what you want,
+you can use this option to tell ``shipperctl`` to use another context.
 
 ``shipperctl clusters setup management``
 ++++++++++++++++++++++++++++++++++++++++
@@ -121,9 +124,16 @@ learn more about what this means.
 
 For each item in the list of **management** or **application** clusters, you can specify these fields:
 
-- name (mandatory): This is the name of the cluster. When specified for an **application** cluster, a :ref:`Cluster <api-reference_cluster>` object will be created on the **management** cluster, and will point to the **application**.
-- context (optional, defaults to the value of ``name``): this is the name of the *context* from your *kubectl* configuration that points to this cluster. ``shipperctl`` will use this context to run commands to set up the cluster, and also to populate the URL of the API master.
-- Fields from the :ref:`Cluster <api-reference_cluster>` object (optional): you can specify any field from the *Cluster* object, and ``shipperctl`` will patch the Cluster object for you the next time you run it. The only field that is mandatory is ``region``, which you have to specify to create any *Cluster* object.
+- name (mandatory): This is the name of the cluster. When specified for an **application** cluster,
+a :ref:`Cluster <api-reference_cluster>` object will be created on the **management** cluster,
+and will point to the **application**.
+- context (optional, defaults to the value of ``name``): this is the name of the *context* from your
+*kubectl* configuration that points to this cluster. ``shipperctl`` will use this context to run
+commands to set up the cluster, and also to populate the URL of the API master.
+- Fields from the :ref:`Cluster <api-reference_cluster>` object (optional): you can specify any
+field from the *Cluster* object, and ``shipperctl`` will patch the Cluster object for you the
+next time you run it. The only field that is mandatory is ``region``,
+which you have to specify to create any *Cluster* object.
 
 Examples
 ````````
@@ -131,7 +141,8 @@ Examples
 Minimal Configuration
 ~~~~~~~~~~~~~~~~~~~~~
 
-Here is a minimal configuration to set up a local *kind* instance, assuming that you have created a cluster called ``mgmt`` and a cluster called ``app``:
+Here is a minimal configuration to set up a local *kind* instance, assuming that you have
+created a cluster called ``mgmt`` and a cluster called ``app``:
 
 .. code-block:: yaml
 
@@ -162,7 +173,10 @@ marking one of them as unschedulable:
 Using Google Kubernetes Engine (GKE) Context Names
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you're running on GKE, your cluster context names are likely to have underscores in them, like this: ``gke_ACCOUNT_ZONE_CLUSTERNAME``. ``shipperctl``'s usage of the context name as the name of the Cluster object will break, because Kubernetes objects are not allowed to have underscores in their names. To solve this, specify ``context`` explicitly in ``clusters.yaml``, like so:
+If you're running on GKE, your cluster context names are likely to have underscores in them,
+like this: ``gke_ACCOUNT_ZONE_CLUSTERNAME``. ``shipperctl``'s usage of the context name as the
+name of the Cluster object will break, because Kubernetes objects are not allowed to have
+underscores in their names. To solve this, specify ``context`` explicitly in ``clusters.yaml``, like so:
 
 .. code-block:: yaml
 
@@ -182,7 +196,9 @@ If you're running on GKE, your cluster context names are likely to have undersco
 ``shipperctl clusters setup application``
 +++++++++++++++++++++++++++++++++++++++++
 
-Once you have set up the **management** cluster and joined it to one or more **application** clusters, you can use this command to set up the **application** clusters for use by ``shipperctl``. Below is an explanation of the options:
+Once you have set up the **management** cluster and joined it to one or more **application** clusters,
+you can use this command to set up the **application** clusters for use by ``shipperctl``.
+Below is an explanation of the options:
 
 .. option:: --application-cluster-service-account <string>
 
