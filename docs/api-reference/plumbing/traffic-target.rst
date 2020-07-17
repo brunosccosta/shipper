@@ -28,11 +28,12 @@ Spec
 ``.spec.weight``
 ================
 
-``weight`` specifies the desired traffic weight for
-this *Release* in the cluster where the *TrafficTarget* object lives.
-The Traffic controller calculates the correct
-traffic ratio for this *Release* by summing weights from all *TrafficTarget*
-objects available.
+``weight`` specifies the desired traffic weight for this *Release* in
+the cluster where the *TrafficTarget* object lives.  The Traffic
+controller calculates the correct traffic ratio for this *Release* by
+summing weights from all *TrafficTarget* objects available. This
+allows Shipper to support a scenario in the future where multiple
+releases are serving traffic simultaneously.
 
 .. literalinclude:: ../../examples/traffictarget.yaml
     :language: yaml
